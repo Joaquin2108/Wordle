@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'org.example'
@@ -9,6 +10,14 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClass = 'Launcher.Terminal'
+}
+
+run {
+    standardInput = System.in
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
@@ -16,4 +25,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(16))
+    }
 }
