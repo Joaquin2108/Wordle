@@ -1,7 +1,9 @@
 package Launcher;
 
+import GameLogic.WordleGame;
+
 public class Terminal {
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        WordleGame.main();
     }
 }
