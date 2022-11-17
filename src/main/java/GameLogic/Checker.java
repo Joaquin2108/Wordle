@@ -27,21 +27,22 @@ public class Checker {
         return true;
     }
     protected void checkCorrectLetters(char[] guessAsArray, char[] answerAsArray) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < answerAsArray.length; i++) {
             if (guessAsArray[i] == answerAsArray[i]) {
                 correctLetters[i] = guessAsArray[i];
             }
             else{
-                if (correctLetters[i] != '?') continue;
+                if (correctLetters[i] != '-') continue;
             }
             if (guessAsArray[i] == answerAsArray[i] && containedLetters.contains(guessAsArray[i])) {
                 try {
-                    containedLetters.remove(guessAsArray[i]);
+                    System.out.println("Inside try before remove " + containedLetters);
+                    containedLetters.remove(i);
+                    System.out.println("Inside try after remove " + containedLetters);
                 }
                 catch (RuntimeException e){
                     System.out.println("Inside catch " + containedLetters);
                     containedLetters = new ArrayList<>();
-                    continue;
                 }
             }
         }
@@ -53,14 +54,16 @@ public class Checker {
                 if (i == j) continue;
                 else {
                     if (guessAsArray[i] == answerAsArray[j]) {
-                        containedLetters.add(guessAsArray[i]);
+                        System.out.println("The letter " + guessAsArray[i] + i +  " should be in contain");
+                        if (!containedLetters.contains(guessAsArray[i])){
+                            System.out.println("We add the new letter ");
+                            containedLetters.add(guessAsArray[i]);
+                            System.out.println(containedLetters + " #Contained letters");
+                        }
+                        else break;
                     }
                 }
             }
         }
-    }
-
-    public String correctLettersToString() {
-        return String.valueOf(correctLetters);
     }
 }
